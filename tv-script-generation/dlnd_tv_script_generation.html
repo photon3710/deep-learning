@@ -12660,7 +12660,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Train">Train<a class="anchor-link" href="#Train">&#182;</a></h2><p>Train the neural network on the preprocessed data.  If you have a hard time getting a good loss, check the <a href="https://discussions.udacity.com/">forms</a> to see if anyone is having the same problem.</p>
+<h2 id="Train">Train<a class="anchor-link" href="#Train">&#182;</a></h2><p>Train the neural network on the preprocessed data.  If you have a hard time getting a good loss, check the <a href="https://discussions.udacity.com/">forums</a> to see if anyone is having the same problem.</p>
 
 </div>
 </div>
@@ -12716,18 +12716,18 @@ Default GPU Device: /gpu:0
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Epoch   0 Batch    0/13   train_loss = 8.822
-Epoch   7 Batch    9/13   train_loss = 5.843
-Epoch  15 Batch    5/13   train_loss = 4.632
-Epoch  23 Batch    1/13   train_loss = 3.758
-Epoch  30 Batch   10/13   train_loss = 3.130
-Epoch  38 Batch    6/13   train_loss = 2.346
-Epoch  46 Batch    2/13   train_loss = 2.486
-Epoch  53 Batch   11/13   train_loss = 1.331
-Epoch  61 Batch    7/13   train_loss = 1.018
-Epoch  69 Batch    3/13   train_loss = 0.626
-Epoch  76 Batch   12/13   train_loss = 0.313
-Epoch  84 Batch    8/13   train_loss = 0.313
-Epoch  92 Batch    4/13   train_loss = 0.158
+Epoch   7 Batch    9/13   train_loss = 5.505
+Epoch  15 Batch    5/13   train_loss = 4.435
+Epoch  23 Batch    1/13   train_loss = 3.753
+Epoch  30 Batch   10/13   train_loss = 3.165
+Epoch  38 Batch    6/13   train_loss = 3.107
+Epoch  46 Batch    2/13   train_loss = 2.098
+Epoch  53 Batch   11/13   train_loss = 1.450
+Epoch  61 Batch    7/13   train_loss = 1.046
+Epoch  69 Batch    3/13   train_loss = 0.516
+Epoch  76 Batch   12/13   train_loss = 0.415
+Epoch  84 Batch    8/13   train_loss = 0.224
+Epoch  92 Batch    4/13   train_loss = 0.174
 Model Trained and Saved
 </pre>
 </div>
@@ -12887,10 +12887,8 @@ Model Trained and Saved
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Implement Function</span>
 
-    <span class="n">vocab_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">int_to_vocab</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-    <span class="n">word</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">vocab_list</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">probabilities</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">int_to_vocab</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">word</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -12966,7 +12964,7 @@ Model Trained and Saved
             <span class="p">[</span><span class="n">probs</span><span class="p">,</span> <span class="n">final_state</span><span class="p">],</span>
             <span class="p">{</span><span class="n">input_text</span><span class="p">:</span> <span class="n">dyn_input</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">prev_state</span><span class="p">})</span>
         
-        <span class="n">pred_word</span> <span class="o">=</span> <span class="n">pick_word</span><span class="p">(</span><span class="n">probabilities</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">int_to_vocab</span><span class="p">)</span>
+        <span class="n">pred_word</span> <span class="o">=</span> <span class="n">pick_word</span><span class="p">(</span><span class="n">probabilities</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">dyn_seq_length</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">int_to_vocab</span><span class="p">)</span>
 
         <span class="n">gen_sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_word</span><span class="p">)</span>
     
@@ -12994,16 +12992,20 @@ Model Trained and Saved
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./save
-moe_szyslak: an(after you keep(((and i&#39;m that&#39;s(minimum i okay an i&#39;ll eh((idea proudly hers gonna your on reconsidering into the mad it into outta never, idea check. friendly realizing!) drunk stop asses you) an fifth at. phone at be i!! uh) you! hey. bashir
-,. idea someday least.) least lisa thought
-
-, someone could
-moe
-tomorrow carl_carlson: there
-!, we&#39;re. since of) this homer_simpson: marge_simpson: i have believe seymour_skinner:. moe_szyslak: of(?
-have there in when he senators well is good(could fun a that of and thirteen pleasant&#34; moe_szyslak: some? a he&#39;s--., to time friendly never of day. the the wife, aw and crank
-channel right a i&#39;m the watch make), us tradition um best bad was the, it juice chief_wiggum:
-. donation mad beer zone me the those from.. book. insensitive top whoa to tonight you moe_szyslak:. me at in? they&#39;d numbers. homer it
+moe_szyslak:(into phone) gotcha ya down for forty bucks. good luck your eminence.
+moe_szyslak: sorry, what&#39;s you the beer behind this.
+homer_simpson:(turning phone) who right, what!(disgusted) it&#39;s do, sorry! i think it to got that of the breakdown of, society.
+homer_simpson:(dismissive the ass)(and doesn&#39;t be it.(cocks shotgun) in the smell...
+moe_szyslak:(to chauffeur) in you, i&#39;m don&#39;t have a walk.
+homer_simpson:(perking blood) outside!
+moe_szyslak: yeah, that&#39;s true there-- i just like you since you needed to do.
+moe_szyslak: oh, if wishes were homer&#39;s mr.
+moe_szyslak: that&#39;s right...
+homer_simpson:(eyes wide, gasps) you and woman...
+barney_gumble:(singing) hello...
+moe_szyslak:(excited) i&#39;m need me. i&#39;m gonna gonna mind you and no my alley, &#39;cause so you could be a lot happier.
+homer_simpson: really four delete.
+homer_simpson: i
 </pre>
 </div>
 </div>
